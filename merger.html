@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style>
+<title>merging elements</title>
+</head>
+
+
+
+<body>
+	<h2>Sai Teja Thatikonda builds a merger</h2>
+		<div class="flex-container" id="target">
+		  <div class="merger">row item 1</div>   
+		  <div class="merger">row item 2</div>  
+		  <div class="merger">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<input type="text" id="input">
+		<button onclick="makeNewDiv()">Add end</button>
+		<button onclick="remove()">Remove</button>
+		<button onclick="addFront()">Add front</button>
+		<button onclick="swap()">Swap</button>
+</body>
+<script>
+	function makeNewDiv(){
+		input=document.getElementById('input').value	
+		e=document.createElement("div")
+		e.className="merger"
+		e.innerHTML=input
+		container=document.getElementById('target')
+		container.appendChild(e)
+		
+	}
+	function remove()
+	{
+		var mergerItems=document.getElementsByClassName("merger")
+		var length=mergerItems.length
+		if(length>0)
+		{
+			mergerItems[Math.floor(length/2)].remove();
+		}
+	}
+	function addFront()
+	{
+		input=document.getElementById("input").value
+		elementF=document.createElement("div")
+		elementF.className="merger"
+		elementF.innerHTML=input
+		container=document.getElementById('target')
+		container.insertBefore(elementF,container.firstChild)
+	}
+	function swap()
+	{
+		let mergerItems=document.getElementsByClassName("merger");
+		let container=document.getElementById("target");
+		let swp1=Math.floor(Math.random()*mergerItems.length);
+		let swp2=Math.floor(Math.random()*mergerItems.length);
+		let Items1=document.getElementsByClassName("merger")[swp1];
+		let Items2=document.getElementsByClassName("merger")[swp2];
+		if(mergerItems.length>1)
+		{
+			let t=Items1.innerHTML;
+			Items1.innerHTML=Items2.innerHTML;
+			Items2.innerHTML=t
+		}
+	}
+</script>
+</html>	
